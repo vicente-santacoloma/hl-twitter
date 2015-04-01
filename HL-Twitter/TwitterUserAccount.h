@@ -10,13 +10,16 @@
 
 @interface TwitterUserAccount : NSObject
 
-@property (strong, nonatomic) NSString *objectId;
+@property (strong, nonatomic) NSString *objectIdString;
 @property (strong, nonatomic) NSString *screenName;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSString *details;
 @property (strong, nonatomic) NSString *profileImageURLHTTPS;
 
+/**
+ 
+ */
 - (id)initWithJSON:(NSDictionary *)JSON;
 
 @end

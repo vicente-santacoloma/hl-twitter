@@ -14,6 +14,9 @@
 @property (strong, nonatomic) NSString *objectIdString;
 @property (strong, nonatomic) NSString *text;
 
+/**
+ 
+ */
 - (id)initWithJSON:(NSDictionary *)JSON;
 
 @end
