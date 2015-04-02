@@ -14,7 +14,6 @@
 {
   self = [super init];
   if (self) {
-    
     self.objectId = [JSON[@"id"] integerValue];
     self.objectIdString = JSON[@"id_str"];
     self.text = JSON[@"text"];

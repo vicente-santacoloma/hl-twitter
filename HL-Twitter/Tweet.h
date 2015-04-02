@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+  This class abstracts the information needed of a tweet.
+ */
 @interface Tweet : NSObject
 
 @property (assign, nonatomic) NSUInteger objectId;
@@ -15,7 +18,11 @@
 @property (strong, nonatomic) NSString *text;
 
 /**
+ Initialises a tweet using the JSON information contained in a dictionary structure.
  
+ @param JSON A dictionary containing the JSON information corresponding to a tweet.
+ 
+ @return The initialised tweet.
  */
 - (id)initWithJSON:(NSDictionary *)JSON;
 

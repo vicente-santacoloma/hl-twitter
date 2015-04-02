@@ -2685,7 +2685,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
         NSArray *users = nil;
         
         if([response isKindOfClass:[NSDictionary class]]) {
-            name = [response valueForKey:@"name"];
+            name = [response valueForKey:@"screenName"];
             slug = [response valueForKey:@"slug"];
             users = [response valueForKey:@"users"];
         }
