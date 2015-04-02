@@ -32,6 +32,7 @@
 @property (strong, nonatomic) NSMutableArray *tweets;
 
 @property (assign, nonatomic) NSUInteger numberOfNewTweets;
+@property (assign, nonatomic) BOOL tweetsLimitExceeded;
 
 /**
  Fetches the information of a Twitter user account.

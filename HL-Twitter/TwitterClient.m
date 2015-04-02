@@ -8,10 +8,12 @@
 
 #import "TwitterClient.h"
 
-//#define kScreenName     @"HLInvest"
-#define kScreenName     @"ElNacionalWeb"
+#define kScreenName     @"HLInvest"
 #define kConsumerkey    @"6RToSDn8Q5HFf1UYGB2H2UFv5"
 #define kConsumerSecret @"1Zk8kQM4ESs2ice3EpAolbNcNQbaBXGA6SAaLj0Qr87pkQfDpP"
+
+// Maximum number of tweets to allocated in the app.
+#define kMaxNumberOfTweets 4000
 
 @implementation TwitterClient
 
@@ -60,23 +62,30 @@
     
     [self.twitter getUserTimelineWithScreenName:kScreenName sinceID:sinceID maxID:maxID count:count
                                    successBlock:^(NSArray *statuses) {
-                          
+         
       self.numberOfNewTweets = statuses.count;
-                                    
-      for (NSDictionary *tweetDictionary in statuses) {
-        [self.tweets addObject:[[Tweet alloc] initWithJSON:tweetDictionary]];
+                                     
+      self.tweetsLimitExceeded = (self.numberOfNewTweets + self.tweets.count > kMaxNumberOfTweets);
+                                     
+      if (!self.tweetsLimitExceeded) {
+        
+        for (NSDictionary *tweetDictionary in statuses) {
+          [self.tweets addObject:[[Tweet alloc] initWithJSON:tweetDictionary]];
+        }
+        
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"objectId"
+                                                                       ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        [self.tweets sortUsingDescriptors:sortDescriptors];
+        
+        Tweet *firstTweet = (Tweet *)[self.tweets firstObject];
+        Tweet *lastTweet = (Tweet *)[self.tweets lastObject];
+        
+        self.sinceID = firstTweet.objectIdString;
+        self.maxID = [NSString stringWithFormat: @"%ld", lastTweet.objectId - 1];
+      } else {
+        NSLog(@"Tweets Limit Exceeded");
       }
-                                     
-      NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"objectId"
-                                                                      ascending:NO];
-      NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-      [self.tweets sortUsingDescriptors:sortDescriptors];
-                   
-      Tweet *firstTweet = (Tweet *)[self.tweets firstObject];
-      Tweet *lastTweet = (Tweet *)[self.tweets lastObject];
-                                     
-      self.sinceID = firstTweet.objectIdString;
-      self.maxID = [NSString stringWithFormat: @"%ld", lastTweet.objectId - 1];
                                      
       [[NSNotificationCenter defaultCenter] postNotificationName:kUserTimelineFetchSucceedNotificationName
                                                           object:nil];

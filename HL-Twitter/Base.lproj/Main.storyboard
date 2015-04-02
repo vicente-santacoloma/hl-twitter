@@ -156,10 +156,10 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cOH-OO-uSN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cOH-OO-uSN">
                                 <rect key="frame" x="0.0" y="170" width="600" height="430"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="2Jy-fF-Ivp" style="IBUITableViewCellStyleDefault" id="Unz-tl-l1O">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="2Jy-fF-Ivp" rowHeight="100" style="IBUITableViewCellStyleDefault" id="Unz-tl-l1O">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Unz-tl-l1O" id="UBe-J5-b3C">
@@ -174,7 +174,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell tag="123" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" id="mqO-zW-MiS">
+                                    <tableViewCell tag="123" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" rowHeight="44" id="mqO-zW-MiS">
                                         <rect key="frame" x="140" y="270" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mqO-zW-MiS" id="4Kp-zr-Qph">
@@ -186,8 +186,8 @@
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="3Mr-Dg-uH7" secondAttribute="centerY" constant="-0.25" id="EkY-OY-G11"/>
-                                                <constraint firstAttribute="centerX" secondItem="3Mr-Dg-uH7" secondAttribute="centerX" id="myG-8g-Nhr"/>
+                                                <constraint firstAttribute="centerY" secondItem="3Mr-Dg-uH7" secondAttribute="centerY" constant="-0.25" id="Etx-Pb-5cD"/>
+                                                <constraint firstAttribute="centerX" secondItem="3Mr-Dg-uH7" secondAttribute="centerX" id="Rw5-BU-IB4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

@@ -34,8 +34,14 @@
 // Set this attribute when loading data.
 @property (nonatomic, assign) BOOL isLoading;
 
+// Set this attribute when the app is fetching old tweets
 @property (assign, nonatomic) BOOL isFetchingOldTweets;
+
+// Set this attribute to YES when there are more old tweets available to be loaded.
+// Otherwise, set to NO.
 @property (assign, nonatomic) BOOL hasMoreOldTweets;
+
+@property (strong, nonatomic) NSTimer *timer;
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
@@ -65,8 +71,8 @@
   [self fetchOldTweets];
   
   // Setting timer
-  [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(fetchNewTweets)
-                                 userInfo:nil repeats:YES];
+  self.timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(fetchNewTweets)
+                                              userInfo:nil repeats:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -75,7 +81,7 @@
 {
   NSUInteger numberOfTweets = self.tweets.count;
   
-  if (self.hasMoreOldTweets) {
+  if (self.hasMoreOldTweets && !self.twitterClient.tweetsLimitExceeded) {
     return numberOfTweets + 1;
   }
   
@@ -117,6 +123,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
   if (cell.tag == kLoadingCellTag) {
     [self fetchOldTweets];
   }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (indexPath.row < self.tweets.count) {
+    return 100;
+  }
+  return 44;
 }
 
 #pragma mark - Fetching User Information & User Timeline
@@ -200,6 +214,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     } else {
       self.hasMoreOldTweets = YES;
     }
+  }
+  
+  if (self.twitterClient.tweetsLimitExceeded) {
+    [self.timer invalidate];
+    self.timer = nil;
   }
   
   [self.tableView reloadData];
