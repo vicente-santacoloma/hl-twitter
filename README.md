@@ -25,5 +25,6 @@ Development Details
 
 * The application uses Auto Layout and Size Classes.
 * The application has a basic pagination system in order to the get the oldest tweets. After reaching the bottom of the table view, a cell with an activity indicator view will appear and in that moment, the app will start to fetch the oldest tweets. The application is able to fetch new tweets using the table view refresh mechanism or just after 1 minute of waiting. It is worth mentioning that the application was implemented (for simplicity) to only fetch one page of new tweets. This means that it will only fetch the first k number of new tweets where k is the maximum number of tweets to be requested. For example, if after a while, 200 new tweets are created in the Twitter account and if the maximum number of tweets to be fetched is 100, the app will only fetch the first 100 tweets, being impossible to fetch the other 100.  
+* The maximum of tweets to be loaded by the app is 4000. However this can be modified.
 * The interaction with Twitter API is done using the pod [STTwitter](https://github.com/nst/STTwitter).
 * The source code documentation is done using the [appledoc](http://gentlebytes.com/appledoc/) documentation generator scheme. 
