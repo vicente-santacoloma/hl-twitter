@@ -20,6 +20,11 @@ Requirements
 * iOS SDK 8.0 or later 
 * Xcode 6 or later
 
+Instructions
+------------
+
+* To run the application open HL-Twitter.xcworkspace file.
+
 Development Details
 -------------------
 
